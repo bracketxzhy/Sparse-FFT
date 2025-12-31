@@ -28,6 +28,6 @@ Our findings indicate that for structured frequency supports, leveraging the str
 
 ## Project Structure
 
-- `/docs`: Contains the full research paper: _Sparse Fast Fourier Transform Is All You Need_.
+- `/docs`: Contains the full research paper "Sparse Fast Fourier Transform Is All You Need" and its associated figures.
 - `/SFFT_MATLAB`(Coming on 2026/01/05): Implementation of SFFT algorithms (Hashing, Bucket Sorting, and Frequency Estimation).
 - `/experiments`: Reproducibility scripts for robustness testing and hashing collision analysis.
