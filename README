@@ -1,8 +1,5 @@
 # Sparse Fast Fourier Transform Is All You Need
 
-[![Affiliation](https://img.shields.io/badge/Affiliation-SCUPI-burgundy.svg)](https://scupi.scu.edu.cn/)
-[![Course](https://img.shields.io/badge/Course-ECE--Analysis-blue.svg)](https://scupi.scu.edu.cn/)
-[![Instructor](https://img.shields.io/badge/Instructor-Prof.%20Hao%20Qin-green.svg)](https://scupi.scu.edu.cn/)
 
 This repository contains the official implementation and research paper for the **ECE Analysis** course project at **Sichuan University-Pittsburgh Institute (SCUPI)**. Under the guidance of **Prof. Hao Qin**, this project investigates the mechanics, history, and efficiency of the Sparse Fast Fourier Transform (SFFT) compared to traditional FFT methods.
 
