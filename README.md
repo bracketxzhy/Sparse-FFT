@@ -1,33 +1,47 @@
-# Sparse Fast Fourier Transform Is All You Need
+# Sparse FFT — Algorithms and Experiments
 
-This repository contains the official implementation and research paper for the **ECE Analysis** course project at **Sichuan University-Pittsburgh Institute (SCUPI)**. Under the guidance of **Prof. Hao Qin**, this project investigates the mechanics, history, and efficiency of the Sparse Fast Fourier Transform (SFFT) compared to traditional FFT methods.
+**SCUPI ECE Analysis course project · MATLAB / Python · Signal processing**
 
-## Abstract
+An educational study of sparse Fourier recovery under the guidance of Prof. Hao Qin, with MATLAB implementation modules and Python experiments illustrating hashing, filtering, and repeated estimation.
 
-The Sparse Fast Fourier Transform (SFFT) is an advanced numerical algorithm designed to analyze signals with frequency-domain sparsity more efficiently than the traditional $O(N \log N)$ Fast Fourier Transform (FFT). This study involves a detailed mathematical analysis of SFFT mechanisms—including hashing, filtering, and frequency recovery. Our research demonstrates that SFFT offers a significant decline in computational complexity for large, sparse datasets without compromising accuracy, making it ideal for applications in medical imaging and wireless communication.
+This is a course project and literature study. The repository does not establish a new recovery theorem, a general deterministic guarantee, or a measured end-to-end speedup over FFT.
 
-## Key Research Contributions
+## Contents
 
-- **Mathematical Decomposition**: In-depth analysis of randomized sub-linear time algorithms and their evolution from MIT and Michigan groups.
-- **Deterministic SFT Analysis**: Evaluation of deterministic methods that guarantee correctness, moving beyond the inherent failure probabilities of randomized methods.
-- **Structured Sparsity Optimization**: Exploration of **Block/Cluster Sparsity** (contiguous blocks) and **Polynomially Generated Sparsity** (algebraic structures).
-- **Complexity Comparison**:
-  - **Unstructured Deterministic**: $O(n^2 \log^{O(1)} N)$
-  - **Prony-based Methods**: $O(n^3)$ for $n$-sparse signals.
-  - **Proposed Structured SFT**: Achieves faster recovery by exploiting the algebraic structure of the frequency support.
+| Material | Location |
+| --- | --- |
+| Course report | [Sparse Fast Fourier Transform Is All You Need](doc/Spare_Fast_Fourier_Transform_Is_All_You_Need.pdf) |
+| MATLAB modules | [SFFT_MATLAB/](SFFT_MATLAB/) |
+| Hashing experiment | [hashing_bucketing_experiment.py](experiment/hashing_bucketing_experiment.py) |
+| Spectral filtering experiment | [spectral_filtering_experiment.py](experiment/spectral_filtering_experiment.py) |
+| Reconstruction experiment | [reconstruction_experiment.py](experiment/reconstruction_experiment.py) |
+| Figures | [doc/](doc/) |
 
-## Performance Insights
+## Python experiments
 
-Our findings indicate that for structured frequency supports, leveraging the structural prior dramatically reduces sampling and computational burdens.
+From the repository root:
 
-| Feature         | Randomized SFFT        | Deterministic SFFT              |
-| :-------------- | :--------------------- | :------------------------------ |
-| **Runtime**     | $O(n \log^{c} N)$      | $O(n^2 \log^{O(1)} N)$          |
-| **Reliability** | Probability of failure | Absolute reliability            |
-| **Best Case**   | General sparse signals | Structured (Block/Poly) signals |
+```bash
+git clone https://github.com/bracketxzhy/Sparse-FFT.git
+cd Sparse-FFT
+python -m pip install numpy scipy matplotlib
+python experiment/hashing_bucketing_experiment.py
+python experiment/spectral_filtering_experiment.py
+python experiment/reconstruction_experiment.py
+```
 
-## Project Structure
+The scripts create plots in the current working directory and may open interactive Matplotlib windows. They use randomized trials without a fixed seed, so reruns need not produce identical curves.
 
-- `/docs`: Contains the full research paper "Sparse Fast Fourier Transform Is All You Need" and its associated figures.
-- `/SFFT_MATLAB`(Coming on 2026/01/05): Implementation of SFFT algorithms (Hashing, Bucket Sorting, and Frequency Estimation).
-- `/experiments`: Reproducibility scripts for robustness testing and hashing collision analysis.
+![Reconstruction experiment figure](doc/reconstruction_experiment_result.png)
+
+The reconstruction script simulates random bucket collisions and median estimates; it does not run the complete MATLAB pipeline. Its figure should not be presented as an FFT runtime comparison or a clinical/wireless-system benchmark.
+
+## MATLAB implementation
+
+Start reading at [main_sfft_function.m](SFFT_MATLAB/main_sfft_function.m). The file declares `sfft_main` and calls window generation, location, voting, and estimation helpers.
+
+**Current integration limitation:** several MATLAB file names differ from their primary function names (including this entry point). Check MATLAB function resolution and helper availability before running the complete chain. A verified one-command MATLAB reproduction is not claimed here; this documentation update does not change the implementation.
+
+## Scope
+
+Hashing, filtering, frequency localization, and coefficient estimation are the main study topics. Complexity results discussed in the report concern the cited algorithms and assumptions; they are not measured complexity guarantees for this code.
